@@ -23,6 +23,11 @@
           and c.item_id = it.id
           and c.cust_id = #{cid}
     </select>
+    <select id="sumcart" parameterType="String" resultType="Integer">
+        SELECT SUM(c.cnt * it.price) AS total_price
+        FROM cart c
+        JOIN item it ON c.item_id = it.id
+    </select>
     <select id="selectall" resultType="cart">
         select c.id,c.cust_id,c.item_id,c.cnt,c.rdate,
                cu.name AS cust_name, it.name AS item_name,

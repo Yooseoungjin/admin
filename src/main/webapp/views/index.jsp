@@ -22,13 +22,12 @@
     <!-- Custom styles for this page -->
     <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <!-- 차트 -->
-    <%-- chart01 : 차트 생성 --%>
+    <%-- 하이차트 생성 --%>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-    <%--  chart 02...  --%>
     <script src="https://code.highcharts.com/highcharts-3d.js"></script>
     <script src="https://code.highcharts.com/modules/drilldown.js"></script>
     <%-- 라이브 차트 만들기  --%>
@@ -40,6 +39,8 @@
     <%--Web Socket--%>
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+
+
 
 </head>
 
@@ -56,7 +57,7 @@
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+            <div class="sidebar-brand-text mx-3">Cherry<sup>♥</sup></div>
         </a>
 
         <!-- Divider -->
@@ -179,6 +180,11 @@
         </li>
 
         <c:if test="${loginadm != null}">
+            <li class="nav-item">
+                <a class="nav-link" href="/callcenter">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>1:1</span></a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="/websocket">
                     <i class="fas fa-fw fa-chart-area"></i>

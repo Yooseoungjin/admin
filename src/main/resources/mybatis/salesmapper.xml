@@ -6,10 +6,27 @@
 
 
     <select id="selectall" resultType="sales">
-        SELECT * FROM sales
+        SELECT * FROM sales;
+    </select>
+    <select id="getrdate" resultType="sales">
+        SELECT distinct(RDATE)AS RDATE
+        FROM SALES
+        ORDER BY RDATE
+    </select>
+    <select id="getmale" resultType="sales">
+        SELECT PRICE AS MSALES
+        FROM SALES
+        WHERE GENDER = 'M'
+        ORDER BY RDATE
+    </select>
+    <select id="getfemale" resultType="sales">
+        SELECT PRICE AS FSALES
+        FROM SALES
+        WHERE GENDER = 'F'
+        ORDER BY RDATE
     </select>
     <insert id="insert" parameterType="sales">
-        INSERT INTO sales VALUES (TO_DATE(#{rdate},'YYYY-MM-DD'),#{price},#{gender})
+        INSERT INTO sales VALUES (TO_DATE(#{rdate},'YYYY-MM-DD'),#{price},#{gender});
     </insert>
 
 </mapper>

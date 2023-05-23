@@ -30,6 +30,7 @@ public class Cart {
         this.cnt = cnt;
     }
 
+    //selcet할때 사용 : 오라클에서 as로 별칭 정한 이름과 똑같이
     private String cust_name;
     private String item_name;
     private String item_price;

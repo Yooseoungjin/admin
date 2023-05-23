@@ -24,12 +24,13 @@
     </appender>
 
     <appender name="FILE2" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOGS_DIR}/custinfo.log</file>
+        <file>${LOGS_DIR}/cartinfo.log</file>
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss}, %msg%n</pattern>
         </encoder>
+        <!--#30시간 뒤 5메가 이상이면 파일명을 cartinfo로 저장함-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOGS_DIR}/custinfo.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <fileNamePattern>${LOGS_DIR}/cartinfo.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>5MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
@@ -47,7 +48,7 @@
         <appender-ref ref="FILE" />
     </logger>
 
-    <logger name="com.kbstar.controller.CustController" level="INFO">
+    <logger name="com.kbstar.controller.ScheduleController" level="INFO">
         <appender-ref ref="FILE2" />
     </logger>
 

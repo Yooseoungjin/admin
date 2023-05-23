@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kbstar.mapper.ChartMapper">
+
+    <select id="getMonthlyTotal" resultType="chart">
+        <![CDATA[ /*XML 문서에서 꺽쇠를 쓰게하는 명령어, 하지만 동적SQL사용시에는 gt, lt사용할 것*/
+            select TO_NUMBER(to_char(rdate,'MM')) month , gender, sum(price) total from sales
+            /*where TO_NUMBER(to_char(rdate,'MM')) > 5*/
+            group by to_char(rdate,'MM'), gender
+            order by 1
+        ]]>
+    </select>
+
+</mapper>

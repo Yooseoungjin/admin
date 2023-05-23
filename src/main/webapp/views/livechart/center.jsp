@@ -5,7 +5,7 @@
 <script>
     let chart04 = {
         init:function(){
-            var defaultData = 'http://127.0.0.1/logs/custinfo.log';
+            var defaultData = '${adminserver}/logs/cartinfo.log';
             var urlInput = document.getElementById('fetchURL');
             var pollingCheckbox = document.getElementById('enablePolling');
             var pollingInput = document.getElementById('pollingTime');
@@ -21,7 +21,7 @@
                     accessibility: {
                         announceNewData: {
                             enabled: true,
-                            minAnnounceInterval: 15000,
+                            minAnnounceInterval: 0,
                             announcementFormatter: function (allSeries, newSeries, newPoint) {
                                 if (newPoint) {
                                     return 'New point added. Value: ' + newPoint.y;
@@ -59,11 +59,11 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Live Chart</h1>
+        <h1 class="h3 mb-2 text-gray-800">실시간 장바구니 금액</h1>
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                <h6 class="m-0 font-weight-bold text-primary">장바구니쓰~</h6>
             </div>
             <div class="card-body">
                 <div id="container"></div>
