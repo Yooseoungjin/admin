@@ -43,6 +43,7 @@
         <div class="card-body">
             <div id="container">
                 <form id="login_form" class="form-horizontal well">
+                    <input type="hidden" name="requestURI" value="${requestURI}">
                     <div class="form-group">
                         <label for="id">아이디</label>
                         <input type="text" class="form-control" id="id" name="id"/>

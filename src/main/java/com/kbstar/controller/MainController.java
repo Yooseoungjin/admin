@@ -3,8 +3,6 @@ package com.kbstar.controller;
 import com.kbstar.dto.Adm;
 import com.kbstar.service.AdmService;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,20 +10,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.ServletRegistration;
 import javax.servlet.http.HttpSession;
 
 @Slf4j
 @Controller
 public class MainController {
-    @Value("${adminserver}")
-    String adminserver;
+
     // 패스워드 암호화 하기.
     @Autowired
     private BCryptPasswordEncoder encoder;
     @Autowired
     AdmService admservice;
-    // 127.0.0.1
+    @Value("${adminserver}")
+    String adminserver;
 
     @RequestMapping("/")
     public String main(Model model){
@@ -62,8 +59,9 @@ public class MainController {
     }
     // 3. 로그인 페이지 가기
     @RequestMapping("/login") // 127.0.0.1:8080/login
-    public String login(Model model){
+    public String login(Model model,String redirectURL){
 
+        model.addAttribute("redirectURL",  redirectURL);
         model.addAttribute("center",  "login"); // center에는 login 페이지 뿌려져라.
         model.addAttribute("leftNav", "leftNav");
         return "index";
@@ -80,7 +78,7 @@ public class MainController {
     // 4. 로그인 시 > loginimpl 로
     // session 추가해서, 로그인 완료 후부턴 adm정보 담고있기(00초 동안 로그인 유지).
     @RequestMapping("/loginimpl")
-    public String loginimpl(Model model, String id, String pwd,
+    public String loginimpl(Model model, String id, String pwd,String requestURI,
                             HttpSession session) throws Exception { // 서버로 넘긴 정보 id, pwd, session
         Adm adm = null; // 받을 준비하기
         String nextPage = "loginfail";
@@ -95,8 +93,8 @@ public class MainController {
                 // session에 담은 정보도, jsp에서 loginadm라는 이름으로 정보 끄집어내기 가능하다.
                 session.setMaxInactiveInterval(100000000);
                 session.setAttribute("loginadm", adm);
-                log.info(adm.toString());
-
+            }else{
+               return "redirect:"+requestURI;
             }
         } catch (Exception e) {
             throw new Exception("ER0006 : 시스템 장애로 인해 로그인이 실패했습니다. 잠시후 재거래 바랍니다. ");

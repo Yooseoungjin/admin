@@ -1,6 +1,5 @@
 package com.kbstar.controller;
 
-import com.kbstar.dto.Cart;
 import com.kbstar.dto.Item;
 import com.kbstar.dto.ItemSearch;
 import com.kbstar.service.ItemService;
@@ -83,7 +82,7 @@ public class ItemController {
     @RequestMapping("/deleteimpl")
     public String delete(Model model,int id) throws Exception {
         itemService.remove(id);
-        model.addAttribute("center",dir+"detail");
+//        model.addAttribute("center",dir+"detail");
         return "redirect:/item/all";
     }
 
